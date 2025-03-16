@@ -226,6 +226,7 @@
                     </div>
                     <div class="col">
                         <form id="contactForm" name="contact" method="POST" data-netlify="true">
+                            <input type="hidden" name="form-name" value="contact">  <!-- Required for Netlify -->
                             <div class="form-control">
                                 <div class="form-inputs">
                                     <input type="text" class="input-field" name="name" placeholder="Your Name" required>
@@ -240,7 +241,7 @@
                                 </div>
                                 <p id="statusMessage"></p>
                             </div>
-                        </form>
+                        </form>                        
                     </div>               
                 </div>
             </section>
