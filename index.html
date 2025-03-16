@@ -225,7 +225,7 @@
                         </div>
                     </div>
                     <div class="col">
-                        <form id="contactForm">
+                        <form id="contactForm" name="contact" method="POST" data-netlify="true">
                             <div class="form-control">
                                 <div class="form-inputs">
                                     <input type="text" class="input-field" name="name" placeholder="Your Name" required>
@@ -241,7 +241,7 @@
                                 <p id="statusMessage"></p>
                             </div>
                         </form>
-                    </div>                    
+                    </div>               
                 </div>
             </section>
         </main>
@@ -298,32 +298,25 @@
                 menuBtn.classList.add("show");
             }
         }
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent form from redirecting
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
 
         let formData = new FormData(this);
 
-        fetch("https://formsubmit.co/ajax/arunrajraj0011@gmail.com", {
+        fetch("/", {
             method: "POST",
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById("statusMessage").innerText = "Message sent successfully!";
-                document.getElementById("statusMessage").style.color = "green";
-                document.getElementById("contactForm").reset(); // Clear form after submission
-            } else {
-                document.getElementById("statusMessage").innerText = "Failed to send message. Try again.";
-                document.getElementById("statusMessage").style.color = "red";
-            }
+        .then(response => {
+            document.getElementById("statusMessage").innerText = "Message sent successfully!";
+            document.getElementById("statusMessage").style.color = "green";
+            document.getElementById("contactForm").reset(); // Clear form
         })
         .catch(error => {
-            document.getElementById("statusMessage").innerText = "An error occurred.";
+            document.getElementById("statusMessage").innerText = "Failed to send message. Try again.";
             document.getElementById("statusMessage").style.color = "red";
         });
     });
-
 
 
     </script>
